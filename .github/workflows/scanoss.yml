@@ -1,0 +1,38 @@
+name: Full Example Workflow with SCANOSS
+
+on:
+  pull_request:
+  push:
+    branches:
+      - '*'
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+  actions: read
+
+jobs:
+   scanoss-code-scan:
+    name: SCANOSS Code Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run SCANOSS Code Scan
+        id: scanoss-code-scan-step
+        uses: scanoss/code-scan-action@v1
+        with:
+          policies: copyleft, undeclared 
+          dependencies.enabled: true
+          # api-url: <YOUR_API_URL>
+          # api-key: <YOUR_API_KEY>
+
+
+      - name: Print stdout scan command
+        run: echo "${{ steps.scanoss-code-scan-step.outputs.stdout-scan-command }}"
+
+      - name: Print Results
+        run: cat "${{ steps.scanoss-code-scan-step.outputs.result-filepath }}"
