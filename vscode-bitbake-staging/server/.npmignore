@@ -1,0 +1,11 @@
+/*
+!/README.md
+!/package.json
+!/out/
+!/resources/
+!tree-sitter-bitbake.wasm
+!tree-sitter-bash.wasm
+*.map
+**/__tests__/
+**/*.tgz
+*.tsbuildinfo

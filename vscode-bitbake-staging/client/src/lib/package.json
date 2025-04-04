@@ -1,0 +1,19 @@
+{
+  "name": "vscode-bitbake-lib",
+  "description": "vscode-bitbake common library.",
+  "version": "2.5.0",
+  "author": "Savoir-faire Linux",
+  "license": "MIT",
+  "engines": {
+    "node": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/yoctoproject/vscode-bitbake/issues"
+  },
+  "homepage": "https://github.com/yoctoproject/vscode-bitbake",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yoctoproject/vscode-bitbake.git"
+  },
+  "scripts": {}
+}

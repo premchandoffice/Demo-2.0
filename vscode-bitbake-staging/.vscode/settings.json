@@ -1,0 +1,19 @@
+{
+	"files.exclude": {
+		"out": false, // set this to true to hide the "out" folder with the compiled JS files
+		"tsconfig.tsbuildinfo": false
+	},
+	"search.exclude": {
+		"out": true, // set this to false to include "out" folder in search results
+		"tsconfig.tsbuildinfo": true,
+		"integration-tests/project-folder": true
+	},
+	"typescript.tsdk": "./node_modules/typescript/lib",
+	"typescript.tsc.autoDetect": "off",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"jest.jestCommandLine": "node_modules/.bin/jest",
+	"jest.monitorLongRun": 300000,
+	"eslint.nodePath": "${workspaceFolder}/node_modules",
+}

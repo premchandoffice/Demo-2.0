@@ -1,0 +1,92 @@
+{
+	"version": "0.2.0",
+	// List of configurations. Add new configurations or edit existing ones.
+	"configurations": [
+		{
+			"name": "Launch Client",
+			"type": "extensionHost",
+			"request": "launch",
+			"runtimeExecutable": "${execPath}",
+			"args": [
+				"--extensionDevelopmentPath=${workspaceRoot}"
+			],
+			"sourceMaps": true,
+			"outFiles": [
+				"${workspaceRoot}/client/out/**/*.js",
+				"${workspaceRoot}/server/out/**/*.js"
+			],
+			"preLaunchTask": "watch"
+
+		},
+		{
+			"name": "Launch Web Client",
+			"type": "extensionHost",
+			"request": "launch",
+			"runtimeExecutable": "${execPath}",
+			"args": [
+				"--extensionDevelopmentPath=${workspaceRoot}",
+				"--extensionDevelopmentKind=web"
+			],
+			"sourceMaps": true,
+			"outFiles": [
+				"${workspaceRoot}/client/out/**/*.js",
+				"${workspaceRoot}/server/out/**/*.js"
+			],
+			"preLaunchTask": "watch"
+
+		},
+		{
+			"name": "Attach to Server",
+			"type": "node",
+			"request": "attach",
+			"port": 6010,
+			"sourceMaps": true,
+			"outFiles": [
+				"${workspaceRoot}/server/out/**/*.js",
+			],
+			"preLaunchTask": "watch"
+		},
+		{
+			"name": "Jest tests",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceRoot}/node_modules/jest/bin/jest",
+			"sourceMaps": true,
+			"outFiles": [
+				"${workspaceRoot}/client/out/**/*.js",
+				"${workspaceRoot}/server/out/**/*.js"
+			],
+			"preLaunchTask": "compile",
+			"console": "integratedTerminal"
+
+		},
+		{
+			"name": "Integration Tests",
+			"type": "extensionHost",
+			"request": "launch",
+			"runtimeExecutable": "${execPath}",
+			"args": [
+			  "--extensionDevelopmentPath=${workspaceRoot}",
+			  "--extensionTestsPath=${workspaceRoot}/integration-tests/out/index",
+			  "--disable-workspace-trust",
+			  "${workspaceRoot}/integration-tests/project-folder"
+			],
+			"sourceMaps": true,
+			"outFiles": [
+				"${workspaceRoot}/client/out/**/*.js",
+				"${workspaceRoot}/server/out/**/*.js",
+				"${workspaceRoot}/integration-tests/out/**/*.js",
+			],
+			"preLaunchTask": "compile",
+		  }
+	],
+	"compounds": [
+		{
+			"name": "Server/client",
+			"configurations": ["Launch Client", "Attach to Server"],
+			"stopAll": true,
+			"preLaunchTask": "compile",
+			"default": true
+		}
+	]
+}

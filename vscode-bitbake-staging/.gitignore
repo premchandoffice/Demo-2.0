@@ -1,0 +1,20 @@
+# logs
+debug.log
+# node
+node_modules/
+# Compiled files
+client/out/
+out/
+*.js.map
+**/tsconfig.tsbuildinfo
+client/*.vsix
+
+.eslintcache
+coverage/
+**/.vscode-test
+
+resources/
+integration-tests/project-folder/build*
+**/*.vsix
+
+*.wasm

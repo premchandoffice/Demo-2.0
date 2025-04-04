@@ -1,0 +1,41 @@
+{
+  "name": "yocto-bitbake",
+  "displayName": "Yocto Project BitBake",
+  "description": "Extended Yocto Project and BitBake language support",
+  "author": {
+    "name": "Savoir-faire Linux",
+    "email": "contact@savoirfairelinux.com",
+    "url": "https://www.savoirfairelinux.com/"
+  },
+  "contributors": [
+    "Eugen Wiens"
+  ],
+  "license": "MIT",
+  "version": "2.5.0",
+  "publisher": "yocto-project",
+  "bugs": {
+    "url": "https://github.com/yoctoproject/vscode-bitbake/issues"
+  },
+  "homepage": "https://github.com/yoctoproject/vscode-bitbake/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yoctoproject/vscode-bitbake.git"
+  },
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "dependencies": {
+    "find": "^0.3.0",
+    "node-pty": "^1.0.0",
+    "semver": "^7.6.3",
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/find": "^0.2.4",
+    "@types/semver": "^7.5.8",
+    "@types/vscode": "^1.96.0"
+  },
+  "workspaces": [
+    "src/lib"
+  ]
+}

@@ -1,0 +1,52 @@
+name: Update references for commits, tags, etc
+
+on:
+  workflow_dispatch: 
+  schedule:
+    - cron: '0 0 1 * *' # Run on the first day of every month
+
+jobs:
+  update-refs:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    env:
+      DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1001/bus
+      SHELL: /usr/bin/bash
+      BASE_BRANCH: staging
+      FILE_PATHS: |
+        integration-tests/src/utils/version.ts
+        scripts/fetch-poky.sh
+        scripts/fetch-docs.sh
+        integration-tests/src/runTest.ts
+        scripts/fetch-spdx-licenses.sh
+      node-version: 20
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ env.BASE_BRANCH }}
+
+    - name: Update required extension version
+      run: bash scripts/update-ref.sh
+
+    - name: Verify file changes
+      uses: tj-actions/verify-changed-files@v20
+      id: verify-changed-files
+      with:
+        files: ${{ env.FILE_PATHS }}
+
+    - name: Create pull request
+      if: steps.verify-changed-files.outputs.files_changed == 'true'
+      uses: peter-evans/create-pull-request@v6
+      with:
+        title: Auto update references for commits, tags, etc
+        commit-message: Auto update references for commits, tags, etc
+        branch: update-ref
+        base: ${{ env.BASE_BRANCH }}
+        token: ${{ secrets.GITHUB_TOKEN }}
